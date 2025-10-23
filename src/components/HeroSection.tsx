@@ -60,7 +60,7 @@ const HeroSection = () => {
                   🚗 Économisez jusqu'à 70% sur vos trajets
                 </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
                 Voyagez <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">malin</span>, voyagez ensemble
               </h1>
               <p className="text-xl text-muted-foreground">
