@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Search, Plus, MapPin, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import heroImage from "@/assets/hero-image.jpg";
+import AnimatedStat from "@/components/AnimatedStat";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -99,20 +100,27 @@ const HeroSection = () => {
               </Button>
             </div>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Animated */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border">
-              <div>
-                <div className="text-3xl font-bold text-primary">5000+</div>
-                <div className="text-sm text-muted-foreground">Trajets réalisés</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-secondary">2000+</div>
-                <div className="text-sm text-muted-foreground">Utilisateurs actifs</div>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-accent">4.8/5</div>
-                <div className="text-sm text-muted-foreground">Note moyenne</div>
-              </div>
+              <AnimatedStat 
+                value={5000} 
+                suffix="+" 
+                label="Trajets réalisés" 
+                colorClass="text-primary"
+              />
+              <AnimatedStat 
+                value={2000} 
+                suffix="+" 
+                label="Utilisateurs actifs" 
+                colorClass="text-secondary"
+              />
+              <AnimatedStat 
+                value={48} 
+                suffix="/5" 
+                label="Note moyenne" 
+                colorClass="text-accent"
+                decimals={1}
+              />
             </div>
           </div>
         </div>
