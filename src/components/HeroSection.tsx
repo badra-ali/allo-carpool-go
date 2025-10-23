@@ -60,8 +60,8 @@ const HeroSection = () => {
                   🚗 Économisez jusqu'à 70% sur vos trajets
                 </span>
               </div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black leading-tight">
-                Voyagez <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">malin</span>, voyagez ensemble
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+                Partagez la route, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">économisez ensemble</span>
               </h1>
               <p className="text-xl text-muted-foreground font-semibold">
                 AlloCar connecte conducteurs et passagers pour des trajets économiques, conviviaux et écologiques à travers la Côte d'Ivoire.
