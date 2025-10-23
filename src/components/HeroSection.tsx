@@ -51,7 +51,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-20 relative z-10">
+      <div className="container mx-auto px-4 py-20 pb-40 md:pb-52 relative z-10">
         <div className="max-w-2xl">
           <div className="space-y-8">
             <div className="space-y-4">
