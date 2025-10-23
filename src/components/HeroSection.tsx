@@ -1,10 +1,22 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search, Plus, MapPin, Calendar } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import heroImage from "@/assets/hero-image.jpg";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useState({
+    from: "",
+    to: "",
+    date: ""
+  });
+
+  const handleQuickSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate("/search", { state: searchParams });
+  };
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Image with Overlay */}
@@ -20,27 +32,42 @@ const HeroSection = () => {
       {/* Quick Search Card - Horizontal */}
       <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 w-full max-w-6xl px-4 hidden md:block">
         <div className="bg-card/95 rounded-2xl shadow-large p-6 backdrop-blur-md border border-border">
-          <form className="flex items-end gap-4">
+          <form onSubmit={handleQuickSearch} className="flex items-end gap-4">
             <div className="flex-1">
               <label className="text-sm font-medium flex items-center gap-2 mb-2">
                 <MapPin className="w-4 h-4 text-primary" />
                 Départ
               </label>
-              <Input placeholder="Ex: Abidjan, Cocody" className="h-12" />
+              <Input 
+                placeholder="Ex: Abidjan, Cocody" 
+                className="h-12"
+                value={searchParams.from}
+                onChange={(e) => setSearchParams({ ...searchParams, from: e.target.value })}
+              />
             </div>
             <div className="flex-1">
               <label className="text-sm font-medium flex items-center gap-2 mb-2">
                 <MapPin className="w-4 h-4 text-primary" />
                 Arrivée
               </label>
-              <Input placeholder="Ex: Yamoussoukro" className="h-12" />
+              <Input 
+                placeholder="Ex: Yamoussoukro" 
+                className="h-12"
+                value={searchParams.to}
+                onChange={(e) => setSearchParams({ ...searchParams, to: e.target.value })}
+              />
             </div>
             <div className="flex-1">
               <label className="text-sm font-medium flex items-center gap-2 mb-2">
                 <Calendar className="w-4 h-4 text-primary" />
                 Date
               </label>
-              <Input type="date" className="h-12" />
+              <Input 
+                type="date" 
+                className="h-12"
+                value={searchParams.date}
+                onChange={(e) => setSearchParams({ ...searchParams, date: e.target.value })}
+              />
             </div>
             <Button size="lg" variant="hero" className="h-12 px-8" type="submit">
               <Search className="w-5 h-5" />

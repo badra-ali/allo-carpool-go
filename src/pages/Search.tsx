@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Search as SearchIcon, MapPin, Calendar, Users, Star } from "lucide-react";
 
 const Search = () => {
-  const [results] = useState([
+  const location = useLocation();
+  const searchParams = location.state as { from?: string; to?: string; date?: string } | null;
+  
+  const [filters, setFilters] = useState({
+    from: searchParams?.from || "",
+    to: searchParams?.to || "",
+    date: searchParams?.date || "",
+    seats: "1"
+  });
+
+  const allResults = [
     {
       id: 1,
       driver: "Koffi Mensah",
@@ -30,7 +41,44 @@ const Search = () => {
       seats: 2,
       price: 3000
     }
-  ]);
+  ];
+
+  const [results, setResults] = useState(allResults);
+
+  useEffect(() => {
+    filterResults();
+  }, [filters]);
+
+  const filterResults = () => {
+    let filtered = allResults;
+
+    if (filters.from) {
+      filtered = filtered.filter(r => 
+        r.from.toLowerCase().includes(filters.from.toLowerCase())
+      );
+    }
+
+    if (filters.to) {
+      filtered = filtered.filter(r => 
+        r.to.toLowerCase().includes(filters.to.toLowerCase())
+      );
+    }
+
+    if (filters.date) {
+      filtered = filtered.filter(r => r.date === filters.date);
+    }
+
+    if (filters.seats) {
+      filtered = filtered.filter(r => r.seats >= parseInt(filters.seats));
+    }
+
+    setResults(filtered);
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    filterResults();
+  };
 
   return (
     <div className="min-h-screen">
@@ -42,37 +90,58 @@ const Search = () => {
           {/* Search Form */}
           <Card className="mb-8">
             <CardContent className="p-6">
-              <form className="grid md:grid-cols-4 gap-4">
+              <form onSubmit={handleSearch} className="grid md:grid-cols-4 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-primary" />
                     Départ
                   </label>
-                  <Input placeholder="Ex: Abidjan, Cocody" className="h-12" />
+                  <Input 
+                    placeholder="Ex: Abidjan, Cocody" 
+                    className="h-12"
+                    value={filters.from}
+                    onChange={(e) => setFilters({ ...filters, from: e.target.value })}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-primary" />
                     Arrivée
                   </label>
-                  <Input placeholder="Ex: Yamoussoukro" className="h-12" />
+                  <Input 
+                    placeholder="Ex: Yamoussoukro" 
+                    className="h-12"
+                    value={filters.to}
+                    onChange={(e) => setFilters({ ...filters, to: e.target.value })}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-primary" />
                     Date
                   </label>
-                  <Input type="date" className="h-12" />
+                  <Input 
+                    type="date" 
+                    className="h-12"
+                    value={filters.date}
+                    onChange={(e) => setFilters({ ...filters, date: e.target.value })}
+                  />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold flex items-center gap-2">
                     <Users className="w-4 h-4 text-primary" />
                     Places
                   </label>
-                  <Input type="number" min="1" defaultValue="1" className="h-12" />
+                  <Input 
+                    type="number" 
+                    min="1" 
+                    className="h-12"
+                    value={filters.seats}
+                    onChange={(e) => setFilters({ ...filters, seats: e.target.value })}
+                  />
                 </div>
               </form>
-              <Button size="lg" variant="hero" className="w-full mt-4">
+              <Button size="lg" variant="hero" className="w-full mt-4" onClick={handleSearch}>
                 <SearchIcon className="w-5 h-5" />
                 Rechercher
               </Button>
