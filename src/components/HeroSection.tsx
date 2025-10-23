@@ -14,7 +14,7 @@ const HeroSection = () => {
           alt="Covoiturage en Afrique" 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-background/50 to-background/20"></div>
       </div>
 
       {/* Quick Search Card - Horizontal */}
