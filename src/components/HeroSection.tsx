@@ -17,9 +17,43 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/50"></div>
       </div>
 
+      {/* Quick Search Card - Background */}
+      <div className="absolute right-8 top-1/2 -translate-y-1/2 z-5 hidden lg:block">
+        <div className="bg-card/90 rounded-2xl shadow-large p-8 backdrop-blur-md border border-border w-[380px]">
+          <h3 className="text-2xl font-bold mb-6">Recherche rapide</h3>
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                Départ
+              </label>
+              <Input placeholder="Ex: Abidjan, Cocody" className="h-12" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-primary" />
+                Arrivée
+              </label>
+              <Input placeholder="Ex: Yamoussoukro" className="h-12" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-primary" />
+                Date
+              </label>
+              <Input type="date" className="h-12" />
+            </div>
+            <Button size="lg" variant="hero" className="w-full" type="submit">
+              <Search className="w-5 h-5" />
+              Rechercher
+            </Button>
+          </form>
+        </div>
+      </div>
+
       {/* Content */}
       <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-2xl">
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="inline-block">
@@ -65,40 +99,6 @@ const HeroSection = () => {
                 <div className="text-3xl font-bold text-accent">4.8/5</div>
                 <div className="text-sm text-muted-foreground">Note moyenne</div>
               </div>
-            </div>
-          </div>
-
-          {/* Quick Search Card */}
-          <div className="hidden md:block">
-            <div className="bg-card rounded-2xl shadow-large p-8 backdrop-blur-sm border border-border">
-              <h3 className="text-2xl font-bold mb-6">Recherche rapide</h3>
-              <form className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    Départ
-                  </label>
-                  <Input placeholder="Ex: Abidjan, Cocody" className="h-12" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-primary" />
-                    Arrivée
-                  </label>
-                  <Input placeholder="Ex: Yamoussoukro" className="h-12" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-primary" />
-                    Date
-                  </label>
-                  <Input type="date" className="h-12" />
-                </div>
-                <Button size="lg" variant="hero" className="w-full" type="submit">
-                  <Search className="w-5 h-5" />
-                  Rechercher
-                </Button>
-              </form>
             </div>
           </div>
         </div>
