@@ -54,6 +54,20 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 py-20 pb-40 md:pb-52 relative z-10">
         <div className="max-w-2xl">
           <div className="space-y-8">
+            <div className="space-y-4">
+              <div className="inline-block">
+                <span className="px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                  🚗 Économisez jusqu'à 70% sur vos trajets
+                </span>
+              </div>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-black leading-tight">
+                Voyagez <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">malin</span>, voyagez ensemble
+              </h1>
+              <p className="text-xl text-muted-foreground font-semibold">
+                AlloCar connecte conducteurs et passagers pour des trajets économiques, conviviaux et écologiques à travers la Côte d'Ivoire.
+              </p>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="xl" variant="hero" asChild>
                 <Link to="/search">
