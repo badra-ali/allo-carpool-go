@@ -44,7 +44,6 @@ const HeroSection = () => {
                 className="h-12"
                 value={searchParams.from}
                 onChange={(e) => setSearchParams({ ...searchParams, from: e.target.value })}
-                required
               />
             </div>
             <div className="flex-1">
@@ -57,7 +56,6 @@ const HeroSection = () => {
                 className="h-12"
                 value={searchParams.to}
                 onChange={(e) => setSearchParams({ ...searchParams, to: e.target.value })}
-                required
               />
             </div>
             <div className="flex-1">
@@ -70,7 +68,6 @@ const HeroSection = () => {
                 className="h-12"
                 value={searchParams.date}
                 onChange={(e) => setSearchParams({ ...searchParams, date: e.target.value })}
-                required
               />
             </div>
             <Button size="lg" variant="hero" className="h-12 md:px-8" type="submit">
