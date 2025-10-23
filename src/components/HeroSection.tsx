@@ -29,10 +29,10 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-background/50 to-background/20"></div>
       </div>
 
-      {/* Quick Search Card - Horizontal */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 w-full max-w-6xl px-4 hidden md:block">
-        <div className="bg-card/95 rounded-2xl shadow-large p-6 backdrop-blur-md border border-border">
-          <form onSubmit={handleQuickSearch} className="flex items-end gap-4">
+      {/* Quick Search Card - Responsive */}
+      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-10 w-full max-w-6xl px-4">
+        <div className="bg-card/95 rounded-2xl shadow-large p-4 md:p-6 backdrop-blur-md border border-border">
+          <form onSubmit={handleQuickSearch} className="flex flex-col md:flex-row items-stretch md:items-end gap-3 md:gap-4">
             <div className="flex-1">
               <label className="text-sm font-medium flex items-center gap-2 mb-2">
                 <MapPin className="w-4 h-4 text-primary" />
@@ -43,6 +43,7 @@ const HeroSection = () => {
                 className="h-12"
                 value={searchParams.from}
                 onChange={(e) => setSearchParams({ ...searchParams, from: e.target.value })}
+                required
               />
             </div>
             <div className="flex-1">
@@ -55,6 +56,7 @@ const HeroSection = () => {
                 className="h-12"
                 value={searchParams.to}
                 onChange={(e) => setSearchParams({ ...searchParams, to: e.target.value })}
+                required
               />
             </div>
             <div className="flex-1">
@@ -67,18 +69,19 @@ const HeroSection = () => {
                 className="h-12"
                 value={searchParams.date}
                 onChange={(e) => setSearchParams({ ...searchParams, date: e.target.value })}
+                required
               />
             </div>
-            <Button size="lg" variant="hero" className="h-12 px-8" type="submit">
+            <Button size="lg" variant="hero" className="h-12 md:px-8" type="submit">
               <Search className="w-5 h-5" />
-              Rechercher
+              <span className="md:inline">Rechercher</span>
             </Button>
           </form>
         </div>
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-20 pb-40 md:pb-52 relative z-10">
+      <div className="container mx-auto px-4 py-20 pb-48 md:pb-56 relative z-10">
         <div className="max-w-2xl">
           <div className="space-y-8">
             <div className="flex flex-col sm:flex-row gap-4">
